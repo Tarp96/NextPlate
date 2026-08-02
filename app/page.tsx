@@ -3,7 +3,7 @@ import RecipeGrid from "@/components/RecipeGrid";
 import Form from "next/form";
 
 export default async function Home({ searchParams }) {
-  const query = (await searchParams)?.query?.toLowerCase() || "";
+  const { query } = (await searchParams) || "";
   const allRecipes = await getAllRecipes();
 
   const filteredRecipes = query
