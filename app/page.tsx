@@ -1,7 +1,7 @@
 import { getAllRecipes } from "@/lib/mock-spoonacular";
 import RecipeGrid from "@/components/RecipeGrid";
 import Form from "next/form";
-import { Search } from "lucide-react";
+import { Search, X } from "lucide-react";
 
 export default async function Home({ searchParams }) {
   const { query } = (await searchParams) || "";
@@ -14,7 +14,7 @@ export default async function Home({ searchParams }) {
     : allRecipes;
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
+    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans ">
       <h1 className="mb-6 text-4xl font-bold">NextPlate</h1>
 
       <Form action="/" className="relative mb-8 w-full max-w-md">
@@ -24,7 +24,7 @@ export default async function Home({ searchParams }) {
           placeholder="Search for recipes..."
           defaultValue={query}
           autoComplete="off"
-          className="w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-12 text-zinc-900 shadow-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+          className="w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-12 text-zinc-900 shadow-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-zinc-700"
         />
 
         <button
