@@ -27,7 +27,7 @@ export default function Searchbar({ query }: SearchbarProps) {
         onChange={(e) => setValue(e.target.value)}
         placeholder="Search for recipes..."
         autoComplete="off"
-        className="w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-20 text-zinc-900 shadow-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-zinc-700 dark:bg-zinc-900 dark:text-white"
+        className="w-full rounded-xl border border-zinc-300 bg-white py-3 pl-4 pr-20 text-zinc-900 shadow-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-500/20 dark:border-zinc-700 "
       />
 
       {value && (
