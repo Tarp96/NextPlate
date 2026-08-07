@@ -2,7 +2,13 @@ import { getAllRecipes } from "@/lib/mock-spoonacular";
 import RecipeGrid from "@/components/RecipeGrid";
 import Searchbar from "@/components/Searchbar";
 
-export default async function Home({ searchParams }) {
+type HomeProps = {
+  searchParams: Promise<{
+    query?: string;
+  }>;
+};
+
+export default async function Home({ searchParams }: HomeProps) {
   const { query } = (await searchParams) || "";
   const allRecipes = await getAllRecipes();
 
