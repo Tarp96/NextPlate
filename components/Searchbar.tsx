@@ -3,6 +3,7 @@
 import { Search, X } from "lucide-react";
 import { useState } from "react";
 import Form from "next/form";
+import { useRouter } from "next/navigation";
 
 type SearchbarProps = {
   query?: string;
@@ -10,6 +11,12 @@ type SearchbarProps = {
 
 export default function Searchbar({ query }: SearchbarProps) {
   const [value, setValue] = useState(query);
+  const router = useRouter();
+
+  function handleClear() {
+    setValue("");
+    router.replace("/");
+  }
 
   return (
     <Form action="/" className="relative mb-8 w-full max-w-md">
@@ -26,7 +33,7 @@ export default function Searchbar({ query }: SearchbarProps) {
       {value && (
         <button
           type="button"
-          onClick={() => setValue("")}
+          onClick={handleClear}
           aria-label="Clear search"
           className="absolute right-12 top-1/2 -translate-y-1/2 rounded-md p-1 text-zinc-500 transition hover:bg-zinc-100 hover:text-red-500 dark:hover:bg-zinc-800"
         >
