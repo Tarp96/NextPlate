@@ -19,12 +19,15 @@ export default async function Home({ searchParams }: HomeProps) {
     : allRecipes;
 
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans ">
-      <h1 className="mb-6 text-4xl font-bold">NextPlate</h1>
+    <div className="flex flex-col items-center bg-zinc-50 font-sans">
+      ,
+      <div className="w-full max-w-7xl px-6 py-8">
+        <h1 className="mb-6 text-4xl font-bold">NextPlate</h1>
 
-      <Searchbar query={query} />
+        <Searchbar query={query} />
 
-      <RecipeGrid recipeList={filteredRecipes} />
+        <RecipeGrid recipeList={filteredRecipes} />
+      </div>
     </div>
   );
 }
