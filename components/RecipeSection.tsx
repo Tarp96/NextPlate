@@ -42,14 +42,16 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
 
   return (
     <>
-      {filterButtons.map(({ label, filter }) => (
-        <FilterButton
-          key={filter}
-          label={label}
-          active={filters[filter]}
-          onClickAction={() => toggleFilter(filter)}
-        />
-      ))}
+      <div className="mb-8 flex gap-2">
+        {filterButtons.map(({ label, filter }) => (
+          <FilterButton
+            key={filter}
+            label={label}
+            active={filters[filter]}
+            onClickAction={() => toggleFilter(filter)}
+          />
+        ))}
+      </div>
 
       <RecipeGrid recipeList={displayRecipeList} />
     </>

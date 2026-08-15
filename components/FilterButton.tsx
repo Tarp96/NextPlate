@@ -18,6 +18,7 @@ export default function FilterButton({
       key={key}
       type="button"
       onClick={onClickAction}
+      aria-pressed={active}
       className={`rounded-full border px-4 py-2 text-sm font-medium shadow-sm transition ${
         active
           ? "border-green-600 bg-green-600 text-white"
