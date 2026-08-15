@@ -10,11 +10,6 @@ type RecipeSectionProps = {
 };
 
 export default function RecipeSection({ recipeList }: RecipeSectionProps) {
-  const [isVegan, setIsVegan] = useState(false);
-  const [vegetarian, setIsVegetarian] = useState(false);
-  const [dairyFree, setIsDairyFree] = useState(false);
-  const [glutenFree, setIsGlutenFree] = useState(false);
-
   const [filters, setFilters] = useState({
     vegan: false,
     vegetarian: false,
