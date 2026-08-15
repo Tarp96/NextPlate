@@ -10,7 +10,7 @@ type SearchbarProps = {
 };
 
 export default function Searchbar({ query }: SearchbarProps) {
-  const [value, setValue] = useState(query);
+  const [value, setValue] = useState(query ?? "");
   const router = useRouter();
 
   function handleClear() {
