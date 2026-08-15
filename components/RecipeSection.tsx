@@ -33,24 +33,23 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     return true;
   });
 
+  const filterButtons = [
+    { label: "Vegan", filter: "vegan" },
+    { label: "Vegetarian", filter: "vegetarian" },
+    { label: "Dairy Free", filter: "dairyFree" },
+    { label: "Gluten Free", filter: "glutenFree" },
+  ] as const;
+
   return (
     <>
-      <FilterButton label="Vegan" onClickAction={() => toggleFilter("vegan")} />
-
-      <FilterButton
-        label="Vegetarian"
-        onClickAction={() => toggleFilter("vegetarian")}
-      />
-
-      <FilterButton
-        label="Dairy Free"
-        onClickAction={() => toggleFilter("dairyFree")}
-      />
-
-      <FilterButton
-        label="Gluten Free"
-        onClickAction={() => toggleFilter("glutenFree")}
-      />
+      {filterButtons.map(({ label, filter }) => (
+        <FilterButton
+          key={filter}
+          label={label}
+          active={filters[filter]}
+          onClickAction={() => toggleFilter(filter)}
+        />
+      ))}
 
       <RecipeGrid recipeList={displayRecipeList} />
     </>
