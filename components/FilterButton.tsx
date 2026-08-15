@@ -1,19 +1,13 @@
 "use client";
 
-import { useState } from "react";
-
 type FilterButtonProps = {
-  isVegan: boolean;
   label: string;
+  onClickAction: () => void;
 };
 
-export default function FilterButton({ isVegan, label }: FilterButtonProps) {
-  const [displayVegan, setDisplayVegan] = useState(isVegan);
-
-  function handleClick() {
-    setDisplayVegan((prev) => !prev);
-    console.log("Click");
-  }
-
-  return <button onClick={handleClick}>{label}</button>;
+export default function FilterButton({
+  label,
+  onClickAction,
+}: FilterButtonProps) {
+  return <button onClick={onClickAction}>{label}</button>;
 }
