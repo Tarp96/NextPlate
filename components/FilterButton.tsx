@@ -3,6 +3,7 @@
 type FilterButtonProps = {
   label: string;
   onClickAction: () => void;
+  active: boolean;
 };
 
 export default function FilterButton({
