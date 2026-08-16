@@ -19,7 +19,7 @@ export default function RecipeCard({
   vegan,
 }: RecipeCardProps) {
   return (
-    <Link href={`/recipeDetails/${id}`}>
+    <Link href={`/recipeDetails/${id}`} className="block h-full">
       <article className="h-full overflow-hidden rounded-xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
         <div className="relative aspect-[4/3]">
           <Image src={imageSrc} alt={title} fill className="object-cover" />
