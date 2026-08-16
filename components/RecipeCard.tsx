@@ -20,13 +20,15 @@ export default function RecipeCard({
 }: RecipeCardProps) {
   return (
     <Link href={`/recipeDetails/${id}`}>
-      <article className="overflow-hidden rounded-xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+      <article className="h-full overflow-hidden rounded-xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
         <div className="relative aspect-[4/3]">
           <Image src={imageSrc} alt={title} fill className="object-cover" />
         </div>
 
         <div className="space-y-3 p-4">
-          <h2 className="line-clamp-2 text-lg font-semibold">{title}</h2>
+          <h2 className="line-clamp-2 min-h-[3.5rem] text-lg font-semibold">
+            {title}
+          </h2>
 
           <p className="text-sm text-gray-500">⏱ {readyInMinutes} min</p>
 
