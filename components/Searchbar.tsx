@@ -4,6 +4,7 @@ import { Search, X } from "lucide-react";
 import { useState } from "react";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
+import SearchButton from "./SearchButton";
 
 type SearchbarProps = {
   query?: string;
@@ -41,13 +42,7 @@ export default function Searchbar({ query }: SearchbarProps) {
         </button>
       )}
 
-      <button
-        type="submit"
-        aria-label="Search"
-        className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-zinc-500 transition hover:bg-zinc-100 hover:text-green-600 dark:hover:bg-zinc-800"
-      >
-        <Search className="h-5 w-5 " />
-      </button>
+      <SearchButton />
     </Form>
   );
 }
