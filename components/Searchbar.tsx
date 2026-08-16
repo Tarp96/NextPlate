@@ -44,9 +44,9 @@ export default function Searchbar({ query }: SearchbarProps) {
       <button
         type="submit"
         aria-label="Search"
-        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-zinc-500 transition hover:bg-zinc-100 hover:text-green-600 dark:hover:bg-zinc-800"
+        className="cursor-pointer absolute right-3 top-1/2 -translate-y-1/2 rounded-md p-1 text-zinc-500 transition hover:bg-zinc-100 hover:text-green-600 dark:hover:bg-zinc-800"
       >
-        <Search className="h-5 w-5" />
+        <Search className="h-5 w-5 " />
       </button>
     </Form>
   );
