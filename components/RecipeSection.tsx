@@ -4,6 +4,7 @@ import { Recipe } from "@/lib/types";
 import { useState } from "react";
 import FilterButton from "./FilterButton";
 import RecipeGrid from "./RecipeGrid";
+import Tag from "./Tag";
 
 type RecipeSectionProps = {
   recipeList: Recipe[];
@@ -44,7 +45,7 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     <>
       <div className="mb-8 flex gap-2">
         {filterButtons.map(({ label, filter }) => (
-          <FilterButton
+          <Tag
             key={filter}
             label={label}
             active={filters[filter]}

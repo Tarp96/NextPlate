@@ -3,7 +3,7 @@
 type TagProps = {
   label: string;
   variant?: "filter" | "badge";
-  onClickAction: () => void;
+  onClickAction?: () => void;
   active?: boolean;
 };
 
