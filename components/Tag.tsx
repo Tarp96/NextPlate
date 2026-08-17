@@ -14,7 +14,7 @@ export default function Tag({
   active = false,
 }: TagProps) {
   const baseStyles =
-    "rounded-full border px-4 py-2 text-sm font-medium shadow-sm";
+    "first-letter:uppercase rounded-full border px-4 py-2 text-sm font-medium shadow-sm";
 
   if (variant === "badge") {
     return (
