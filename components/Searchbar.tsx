@@ -1,6 +1,6 @@
 "use client";
 
-import { Search, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useState } from "react";
 import Form from "next/form";
 import { useRouter } from "next/navigation";
