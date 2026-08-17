@@ -2,7 +2,6 @@
 
 import { Recipe } from "@/lib/types";
 import { useState } from "react";
-import FilterButton from "./FilterButton";
 import RecipeGrid from "./RecipeGrid";
 import Tag from "./Tag";
 

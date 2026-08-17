@@ -1,7 +1,6 @@
 import { getRecipeById } from "@/lib/mock-spoonacular";
 import Image from "next/image";
 import { Clock, Utensils } from "lucide-react";
-import FilterButton from "@/components/FilterButton";
 import Tag from "@/components/Tag";
 
 type RecipeDetailsPageProps = {
