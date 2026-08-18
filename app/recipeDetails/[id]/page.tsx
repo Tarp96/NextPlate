@@ -21,6 +21,12 @@ export default async function RecipeDetailsPage({
     return null;
   }
 
+  const recipeIngredients = recipe.extendedIngredients.map((ingredient) => (
+    <li>
+      {ingredient.name} {ingredient.measures.us.amount}lb
+    </li>
+  ));
+
   return (
     <>
       <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
@@ -80,6 +86,10 @@ export default async function RecipeDetailsPage({
             {recipe.glutenFree && <Tag label="Gluten Free" variant="badge" />}
           </div>
         </div>
+      </section>
+      <section>
+        <h2>Ingredients</h2>
+        <ul>{recipeIngredients}</ul>
       </section>
     </>
   );

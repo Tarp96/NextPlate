@@ -14,7 +14,7 @@ export default function Tag({
   active = false,
 }: TagProps) {
   const baseStyles =
-    "first-letter:uppercase rounded-full border px-4 py-2 text-sm font-medium shadow-sm";
+    "capitalize inline-flex items-center justify-center rounded-full border px-4 py-2 text-sm font-medium";
 
   if (variant === "badge") {
     return (
