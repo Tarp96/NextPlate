@@ -2,6 +2,7 @@ import { getRecipeById } from "@/lib/mock-spoonacular";
 import Image from "next/image";
 import { Clock, Utensils } from "lucide-react";
 import Tag from "@/components/Tag";
+import IngredientsSection from "@/components/IngredientsSection";
 
 type RecipeDetailsPageProps = {
   params: Promise<{
@@ -20,19 +21,6 @@ export default async function RecipeDetailsPage({
   if (!recipe) {
     return null;
   }
-
-  const recipeIngredients = recipe.extendedIngredients.map((ingredient) => (
-    <li
-      key={ingredient.id}
-      className="flex items-center justify-between border-b border-zinc-100 pb-3 last:border-b-0"
-    >
-      <span className="capitalize text-zinc-800">{ingredient.name}</span>
-
-      <span className="text-sm font-medium text-zinc-500">
-        {ingredient.measures.us.amount} {ingredient.measures.us.unitShort}
-      </span>
-    </li>
-  ));
 
   return (
     <>
@@ -106,7 +94,7 @@ export default async function RecipeDetailsPage({
           </button>
         </div>
 
-        <ul className="space-y-3">{recipeIngredients}</ul>
+        <IngredientsSection ingredientList={recipe.extendedIngredients} />
       </section>
     </>
   );
