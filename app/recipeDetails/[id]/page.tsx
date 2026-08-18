@@ -22,8 +22,15 @@ export default async function RecipeDetailsPage({
   }
 
   const recipeIngredients = recipe.extendedIngredients.map((ingredient) => (
-    <li>
-      {ingredient.name} {ingredient.measures.us.amount}lb
+    <li
+      key={ingredient.id}
+      className="flex items-center justify-between border-b border-zinc-100 pb-3 last:border-b-0"
+    >
+      <span className="capitalize text-zinc-800">{ingredient.name}</span>
+
+      <span className="text-sm font-medium text-zinc-500">
+        {ingredient.measures.us.amount} {ingredient.measures.us.unitShort}
+      </span>
     </li>
   ));
 
@@ -87,9 +94,19 @@ export default async function RecipeDetailsPage({
           </div>
         </div>
       </section>
-      <section>
-        <h2>Ingredients</h2>
-        <ul>{recipeIngredients}</ul>
+      <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+        <div className="mb-5 flex items-center justify-between gap-8">
+          <h2 className="text-2xl font-semibold text-zinc-900">Ingredients</h2>
+
+          <button
+            type="button"
+            className="rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-medium text-green-700"
+          >
+            US
+          </button>
+        </div>
+
+        <ul className="space-y-3">{recipeIngredients}</ul>
       </section>
     </>
   );
