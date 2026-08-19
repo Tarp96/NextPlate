@@ -82,20 +82,7 @@ export default async function RecipeDetailsPage({
           </div>
         </div>
       </section>
-      <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
-        <div className="mb-5 flex items-center justify-between gap-8">
-          <h2 className="text-2xl font-semibold text-zinc-900">Ingredients</h2>
-
-          <button
-            type="button"
-            className="rounded-full border border-green-200 bg-green-50 px-4 py-2 text-sm font-medium text-green-700"
-          >
-            US
-          </button>
-        </div>
-
-        <IngredientsSection ingredientList={recipe.extendedIngredients} />
-      </section>
+      <IngredientsSection ingredientList={recipe.extendedIngredients} />
     </>
   );
 }
