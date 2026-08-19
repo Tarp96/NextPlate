@@ -10,10 +10,10 @@ type IngredientsSectionProps = {
 export default function IngredientsSection({
   ingredientList,
 }: IngredientsSectionProps) {
-  const [metric, setMetric] = useState(false);
+  const [isMetric, setIsMetric] = useState(false);
 
   function handleClick() {
-    setMetric((prev) => !prev);
+    setIsMetric((prev) => !prev);
   }
 
   const recipeIngredients = ingredientList.map((ingredient) => (
@@ -25,7 +25,7 @@ export default function IngredientsSection({
 
       <span className="text-sm font-medium text-zinc-500">
         {ingredient.measures.us.amount}{" "}
-        {metric
+        {isMetric
           ? ingredient.measures.us.unitShort
           : ingredient.measures.metric.unitShort}
       </span>
@@ -40,12 +40,12 @@ export default function IngredientsSection({
         <button
           type="button"
           onClick={handleClick}
-          aria-label={`Switch to ${metric ? "US" : "Metric"} measurements`}
+          aria-label={`Switch to ${isMetric ? "US" : "Metric"} measurements`}
           className="flex cursor-pointer items-center rounded-full border border-green-200 bg-green-50 p-1 text-sm font-medium"
         >
           <span
             className={`rounded-full px-3 py-1.5 transition ${
-              !metric ? "bg-green-600 text-white shadow-sm" : "text-green-700"
+              !isMetric ? "bg-green-600 text-white shadow-sm" : "text-green-700"
             }`}
           >
             Metric
@@ -53,7 +53,7 @@ export default function IngredientsSection({
 
           <span
             className={`rounded-full px-3 py-1.5 transition ${
-              metric ? "bg-green-600 text-white shadow-sm" : "text-green-700"
+              isMetric ? "bg-green-600 text-white shadow-sm" : "text-green-700"
             }`}
           >
             US
