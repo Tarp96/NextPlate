@@ -23,7 +23,15 @@ export default async function RecipeDetailsPage({
   }
 
   const displayAnalyzedInstructions = recipe.analyzedInstructions[0].steps.map(
-    (step, i) => <li key={i}>{step.step}</li>,
+    (step) => (
+      <li key={step.number} className="flex gap-4">
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-100 text-sm font-semibold text-green-700">
+          {step.number}
+        </span>
+
+        <p className="leading-7 text-zinc-700">{step.step}</p>
+      </li>
+    ),
   );
 
   return (
@@ -87,7 +95,13 @@ export default async function RecipeDetailsPage({
         </div>
       </section>
       <IngredientsSection ingredientList={recipe.extendedIngredients} />
-      <ul>{displayAnalyzedInstructions}</ul>
+      <section className="mx-auto max-w-3xl px-4 py-8 sm:px-6">
+        <h2 className="mb-6 text-2xl font-semibold text-zinc-900">
+          Instructions
+        </h2>
+
+        <ol className="space-y-6">{displayAnalyzedInstructions}</ol>
+      </section>
     </>
   );
 }
