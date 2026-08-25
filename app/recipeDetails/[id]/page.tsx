@@ -22,6 +22,10 @@ export default async function RecipeDetailsPage({
     return null;
   }
 
+  const displayAnalyzedInstructions = recipe.analyzedInstructions[0].steps.map(
+    (step, i) => <li key={i}>{step.step}</li>,
+  );
+
   return (
     <>
       <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
@@ -83,6 +87,7 @@ export default async function RecipeDetailsPage({
         </div>
       </section>
       <IngredientsSection ingredientList={recipe.extendedIngredients} />
+      <ul>{displayAnalyzedInstructions}</ul>
     </>
   );
 }
