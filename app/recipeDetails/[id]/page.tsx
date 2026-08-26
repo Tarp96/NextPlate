@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Clock, ThumbsUp, Utensils } from "lucide-react";
 import Tag from "@/components/Tag";
 import IngredientsSection from "@/components/IngredientsSection";
+import RecipeStat from "@/components/RecipeStat";
 
 type RecipeDetailsPageProps = {
   params: Promise<{
@@ -55,39 +56,19 @@ export default async function RecipeDetailsPage({
         </div>
 
         <div className="mt-5 flex flex-wrap gap-3">
-          <div className="flex items-center gap-3 rounded-xl bg-slate-100 px-4 py-3">
-            <Clock className="h-5 w-5 text-slate-600" />
+          <RecipeStat
+            icon={Clock}
+            label="Ready in"
+            value={`${recipe.readyInMinutes} min`}
+          />
 
-            <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
-                Ready in
-              </p>
-              <p className="font-semibold text-slate-800">
-                {recipe.readyInMinutes} min
-              </p>
-            </div>
-          </div>
+          <RecipeStat
+            icon={Utensils}
+            label="Servings"
+            value={recipe.servings}
+          />
 
-          <div className="flex items-center gap-3 rounded-xl bg-slate-100 px-4 py-3">
-            <Utensils className="h-5 w-5 text-slate-600" />
-
-            <div>
-              <p className="text-xs font-medium uppercase tracking-wide text-slate-500">
-                Servings
-              </p>
-              <p className="font-semibold text-slate-800">{recipe.servings}</p>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3 rounded-xl bg-slate-100 px-4 py-3">
-            <ThumbsUp />
-
-            <div>
-              <p className="font-semibold text-slate-800">
-                {recipe.aggregateLikes}
-              </p>
-            </div>
-          </div>
+          <RecipeStat icon={ThumbsUp} value={recipe.aggregateLikes} />
 
           <div className="mt-4 flex flex-wrap gap-2">
             {recipe.cuisines?.map((cuisine) => (
