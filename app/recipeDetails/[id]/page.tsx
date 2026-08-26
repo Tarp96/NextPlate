@@ -1,6 +1,6 @@
 import { getRecipeById } from "@/lib/mock-spoonacular";
 import Image from "next/image";
-import { Clock, Utensils } from "lucide-react";
+import { Clock, ThumbsUp, Utensils } from "lucide-react";
 import Tag from "@/components/Tag";
 import IngredientsSection from "@/components/IngredientsSection";
 
@@ -76,6 +76,16 @@ export default async function RecipeDetailsPage({
                 Servings
               </p>
               <p className="font-semibold text-slate-800">{recipe.servings}</p>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 rounded-xl bg-slate-100 px-4 py-3">
+            <ThumbsUp />
+
+            <div>
+              <p className="font-semibold text-slate-800">
+                {recipe.aggregateLikes}
+              </p>
             </div>
           </div>
 
