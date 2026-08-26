@@ -91,6 +91,12 @@ export default async function RecipeDetailsPage({
             )}
 
             {recipe.glutenFree && <Tag label="Gluten Free" variant="badge" />}
+
+            {recipe.dairyFree && <Tag label="Dairy Free" variant="badge" />}
+
+            {recipe.dishTypes.length > 0 && (
+              <Tag label={recipe.dishTypes[0]} variant="badge" />
+            )}
           </div>
         </div>
       </section>
