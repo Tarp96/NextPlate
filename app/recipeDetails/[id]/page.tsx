@@ -1,9 +1,9 @@
 import { getRecipeById } from "@/lib/mock-spoonacular";
 import Image from "next/image";
 import { Clock, ThumbsUp, Utensils } from "lucide-react";
-import Tag from "@/components/Tag";
-import IngredientsSection from "@/components/IngredientsSection";
-import RecipeStat from "@/components/RecipeStat";
+import Tag from "@/components/ui/Tag";
+import IngredientsSection from "@/components/recipe-details/IngredientsSection";
+import RecipeStat from "@/components/recipe-details/RecipeStat";
 
 type RecipeDetailsPageProps = {
   params: Promise<{

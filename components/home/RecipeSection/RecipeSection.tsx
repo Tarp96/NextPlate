@@ -3,7 +3,7 @@
 import { Recipe } from "@/lib/types";
 import { useState } from "react";
 import RecipeGrid from "./RecipeGrid";
-import Tag from "./Tag";
+import Tag from "../../ui/Tag";
 import { SortOption, SelectedSortOption, RecipeComparator } from "@/lib/types";
 import SortButton from "./SortButton";
 
@@ -18,11 +18,12 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     dairyFree: false,
     glutenFree: false,
   });
-  
-  const [isOpen, setIsOpen] = useState(false);
-  const [sortByOption, setSortByOption] = useState<SelectedSortOption>("default");
 
-  const sortingIsActive = isOpen || sortByOption !== "default"
+  const [isOpen, setIsOpen] = useState(false);
+  const [sortByOption, setSortByOption] =
+    useState<SelectedSortOption>("default");
+
+  const sortingIsActive = isOpen || sortByOption !== "default";
 
   function toggleFilter(filter: keyof typeof filters) {
     setFilters((prev) => ({
@@ -31,9 +32,8 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     }));
   }
 
-const sortingOptions: Record<SortOption, RecipeComparator> = {
-    
-    fastest: (a, b) => a.readyInMinutes - b.readyInMinutes, 
+  const sortingOptions: Record<SortOption, RecipeComparator> = {
+    fastest: (a, b) => a.readyInMinutes - b.readyInMinutes,
 
     slowest: (a, b) => b.readyInMinutes - a.readyInMinutes,
 
@@ -42,9 +42,9 @@ const sortingOptions: Record<SortOption, RecipeComparator> = {
     nameDescending: (a, b) => b.title.localeCompare(a.title),
 
     highestRated: (a, b) => b.aggregateLikes - a.aggregateLikes,
-}
+  };
 
-  function handleSortSelection(option: SelectedSortOption){
+  function handleSortSelection(option: SelectedSortOption) {
     setSortByOption(option);
     setIsOpen(false);
   }
@@ -58,11 +58,10 @@ const sortingOptions: Record<SortOption, RecipeComparator> = {
     return true;
   });
 
-const displayRecipeList =
-  sortByOption === "default"
-    ? filteredRecipeList
-    : [...filteredRecipeList].sort(sortingOptions[sortByOption]);
-
+  const displayRecipeList =
+    sortByOption === "default"
+      ? filteredRecipeList
+      : [...filteredRecipeList].sort(sortingOptions[sortByOption]);
 
   const filterButtons = [
     { label: "Vegan", filter: "vegan" },
@@ -83,13 +82,13 @@ const displayRecipeList =
           />
         ))}
 
-<div className="relative">
-  <button
-    type="button"
-    onClick={() => setIsOpen((prev) => !prev)}
-    aria-expanded={isOpen}
-    aria-haspopup="menu"
-    className={`
+        <div className="relative">
+          <button
+            type="button"
+            onClick={() => setIsOpen((prev) => !prev)}
+            aria-expanded={isOpen}
+            aria-haspopup="menu"
+            className={`
       inline-flex cursor-pointer items-center justify-center gap-2
       rounded-full border px-4 py-2 text-sm font-medium transition
       ${
@@ -100,72 +99,71 @@ const displayRecipeList =
              hover:text-green-700`
       }
     `}
-  >
-    Sort
+          >
+            Sort
+            <span
+              aria-hidden="true"
+              className={`text-xs transition-transform ${
+                isOpen ? "rotate-180" : ""
+              }`}
+            >
+              ▼
+            </span>
+          </button>
 
-    <span
-      aria-hidden="true"
-      className={`text-xs transition-transform ${
-        isOpen ? "rotate-180" : ""
-      }`}
-    >
-      ▼
-    </span>
-  </button>
-
-  {isOpen && (
-    <div
-      role="menu"
-      className="
+          {isOpen && (
+            <div
+              role="menu"
+              className="
         absolute right-0 z-20 mt-2 w-56 overflow-hidden
         rounded-xl border border-zinc-200 bg-white py-2
         shadow-lg
       "
-    >
-      <SortButton
-        label="Default"
-        option="default"
-        selectedOption={sortByOption}
-        onSelect={handleSortSelection}
-      />
+            >
+              <SortButton
+                label="Default"
+                option="default"
+                selectedOption={sortByOption}
+                onSelect={handleSortSelection}
+              />
 
-      <SortButton
-        label="Cooking time: shortest"
-        option="fastest"
-        selectedOption={sortByOption}
-        onSelect={handleSortSelection}
-      />
+              <SortButton
+                label="Cooking time: shortest"
+                option="fastest"
+                selectedOption={sortByOption}
+                onSelect={handleSortSelection}
+              />
 
-      <SortButton
-        label="Cooking time: longest"
-        option="slowest"
-        selectedOption={sortByOption}
-        onSelect={handleSortSelection}
-      />
+              <SortButton
+                label="Cooking time: longest"
+                option="slowest"
+                selectedOption={sortByOption}
+                onSelect={handleSortSelection}
+              />
 
-      <SortButton
-        label="Name: A–Z"
-        option="nameAscending"
-        selectedOption={sortByOption}
-        onSelect={handleSortSelection}
-      />
+              <SortButton
+                label="Name: A–Z"
+                option="nameAscending"
+                selectedOption={sortByOption}
+                onSelect={handleSortSelection}
+              />
 
-      <SortButton
-        label="Name: Z–A"
-        option="nameDescending"
-        selectedOption={sortByOption}
-        onSelect={handleSortSelection}
-      />
+              <SortButton
+                label="Name: Z–A"
+                option="nameDescending"
+                selectedOption={sortByOption}
+                onSelect={handleSortSelection}
+              />
 
-      <SortButton
-        label="Most popular"
-        option="highestRated"
-        selectedOption={sortByOption}
-        onSelect={handleSortSelection}
-      />
-    </div>
-  )}
-</div>
+              <SortButton
+                label="Most popular"
+                option="highestRated"
+                selectedOption={sortByOption}
+                onSelect={handleSortSelection}
+              />
+            </div>
+          )}
+        </div>
       </div>
 
       <RecipeGrid recipeList={displayRecipeList} />

@@ -1,6 +1,6 @@
 import { getAllRecipes } from "@/lib/mock-spoonacular";
-import Searchbar from "@/components/Searchbar";
-import RecipeSection from "@/components/RecipeSection";
+import Searchbar from "@/components/home/SearchBar/Searchbar";
+import RecipeSection from "@/components/home/RecipeSection/RecipeSection";
 
 type HomeProps = {
   searchParams: Promise<{
