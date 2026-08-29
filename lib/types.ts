@@ -95,3 +95,16 @@ export type InstructionEquipment = {
   localizedName: string;
   image: string;
 };
+
+export type SortOption =
+  | "fastest"
+  | "slowest"
+  | "nameAscending"
+  | "nameDescending"
+  | "highestRated"
+
+export type SelectedSortOption = SortOption | "default" 
+
+export type RecipeComparator = (a: Recipe, b: Recipe) => number; 
+
+
