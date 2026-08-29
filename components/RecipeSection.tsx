@@ -15,9 +15,10 @@ type SortOption =
   | "nameAscending"
   | "nameDescending"
   | "highestRated"
-  | "newest";
+  
+type SelectedSortOption = SortOption | "default"
 
-  type RecipeComparator = (a: Recipe, b: Recipe) => number; 
+type RecipeComparator = (a: Recipe, b: Recipe) => number; 
 
 export default function RecipeSection({ recipeList }: RecipeSectionProps) {
   const [filters, setFilters] = useState({
@@ -27,9 +28,8 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     glutenFree: false,
   });
   
-  const [isSorted, setIsSorted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [sortBy, setSortBy] = useState("default");
+  const [sortBy, setSortBy] = useState<SelectedSortOption>("default");
 
   function toggleFilter(filter: keyof typeof filters) {
     setFilters((prev) => ({
@@ -38,15 +38,8 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     }));
   }
 
-  function toggleOpen(){
-    setIsOpen(prev => !prev)
-  }
-
-  function sortList(){
-    setIsSorted(prev => !prev)
-  }
-
-  const sortingOptions: Record<SortOption, RecipeComparator> = {
+const sortingOptions: Record<SortOption, RecipeComparator> = {
+    
     fastest: (a, b) => a.readyInMinutes - b.readyInMinutes, 
 
     slowest: (a, b) => b.readyInMinutes - a.readyInMinutes,
@@ -58,6 +51,11 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     highestRated: (a, b) => b.aggregateLikes - a.aggregateLikes,
 }
 
+  function handleSortSelection(option: SortOption){
+    setSortBy(option);
+    setIsOpen(false);
+  }
+
   const filteredRecipeList = recipeList.filter((recipe) => {
     if (filters.vegan && !recipe.vegan) return false;
     if (filters.vegetarian && !recipe.vegetarian) return false;
@@ -67,9 +65,10 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     return true;
   });
 
-  const displayRecipeList = isSorted ? 
-  [...filteredRecipeList].sort((a, b) => a.readyInMinutes - b.readyInMinutes)
-  : filteredRecipeList
+const displayRecipeList =
+  sortBy === "default"
+    ? filteredRecipeList
+    : [...filteredRecipeList].sort(sortingOptions[sortBy]);
 
 
   const filterButtons = [
@@ -91,9 +90,13 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
           />
         ))}
 
-        <button onClick={toggleOpen}>Filter</button>
+        <button onClick={() => setIsOpen(prev => !prev)}>Filter</button>
 
-        {isOpen && <button onClick={sortList}>Time</button> }
+        
+        {isOpen && <button onClick={() => handleSortSelection("fastest")}>Time Fastests</button> }
+        {isOpen && <button onClick={() => handleSortSelection("slowest")}>Time Slowest</button> }
+        {isOpen && <button onClick={() => handleSortSelection("nameAscending")}>Name: A-Z</button> }
+        {isOpen && <button onClick={() => handleSortSelection("nameDescending")}>Name: Z-A</button> }
       </div>
 
       <RecipeGrid recipeList={displayRecipeList} />
