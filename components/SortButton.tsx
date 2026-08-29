@@ -1,18 +1,19 @@
-import { SortOption, SelectedSortOption } from "@/lib/types"
+import { SortOption, SelectedSortOption } from "@/lib/types";
 
 type SortButtonProps = {
-    label: string;
-    option: SelectedSortOption; 
-    selectedOption: SelectedSortOption;
-    onSelect: (option: SelectedSortOption) => void;
-}
+  label: string;
+  option: SelectedSortOption;
+  selectedOption: SelectedSortOption;
+  onSelect: (option: SelectedSortOption) => void;
+};
 
 export default function SortButton({
-    label, option, selectedOption, onSelect
-}: SortButtonProps){
-
-const isSelected = option === selectedOption
-
+  label,
+  option,
+  selectedOption,
+  onSelect,
+}: SortButtonProps) {
+  const isSelected = option === selectedOption;
 
   return (
     <button
