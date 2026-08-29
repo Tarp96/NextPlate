@@ -16,6 +16,9 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     dairyFree: false,
     glutenFree: false,
   });
+  
+  const [isSorted, setIsSorted] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   function toggleFilter(filter: keyof typeof filters) {
     setFilters((prev) => ({
@@ -24,7 +27,15 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
     }));
   }
 
-  const displayRecipeList = recipeList.filter((recipe) => {
+  function toggleOpen(){
+    setIsOpen(prev => !prev)
+  }
+
+  function sortList(){
+    setIsSorted(prev => !prev)
+  }
+
+  const filteredRecipeList = recipeList.filter((recipe) => {
     if (filters.vegan && !recipe.vegan) return false;
     if (filters.vegetarian && !recipe.vegetarian) return false;
     if (filters.dairyFree && !recipe.dairyFree) return false;
@@ -32,6 +43,11 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
 
     return true;
   });
+
+  const displayRecipeList = isSorted ? 
+  [...filteredRecipeList].sort((a, b) => a.readyInMinutes - b.readyInMinutes)
+  : filteredRecipeList
+
 
   const filterButtons = [
     { label: "Vegan", filter: "vegan" },
@@ -51,6 +67,10 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
             onClickAction={() => toggleFilter(filter)}
           />
         ))}
+
+        <button onClick={toggleOpen}>Filter</button>
+
+        {isOpen && <button onClick={sortList}>Time</button> }
       </div>
 
       <RecipeGrid recipeList={displayRecipeList} />
