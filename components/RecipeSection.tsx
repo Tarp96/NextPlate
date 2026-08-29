@@ -9,6 +9,16 @@ type RecipeSectionProps = {
   recipeList: Recipe[];
 };
 
+type SortOption =
+  | "fastest"
+  | "slowest"
+  | "nameAscending"
+  | "nameDescending"
+  | "highestRated"
+  | "newest";
+
+  type RecipeComparator = (a: Recipe, b: Recipe) => number; 
+
 export default function RecipeSection({ recipeList }: RecipeSectionProps) {
   const [filters, setFilters] = useState({
     vegan: false,
@@ -19,6 +29,7 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
   
   const [isSorted, setIsSorted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [sortBy, setSortBy] = useState("default");
 
   function toggleFilter(filter: keyof typeof filters) {
     setFilters((prev) => ({
@@ -34,6 +45,18 @@ export default function RecipeSection({ recipeList }: RecipeSectionProps) {
   function sortList(){
     setIsSorted(prev => !prev)
   }
+
+  const sortingOptions: Record<SortOption, RecipeComparator> = {
+    fastest: (a, b) => a.readyInMinutes - b.readyInMinutes, 
+
+    slowest: (a, b) => b.readyInMinutes - a.readyInMinutes,
+
+    nameAscending: (a, b) => a.title.localeCompare(b.title),
+
+    nameDescending: (a, b) => b.title.localeCompare(a.title),
+
+    highestRated: (a, b) => b.aggregateLikes - a.aggregateLikes,
+}
 
   const filteredRecipeList = recipeList.filter((recipe) => {
     if (filters.vegan && !recipe.vegan) return false;
