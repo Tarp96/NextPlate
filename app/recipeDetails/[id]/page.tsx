@@ -1,9 +1,10 @@
 import { getRecipeById } from "@/lib/mock-spoonacular";
 import Image from "next/image";
-import { Clock, ThumbsUp, Utensils, ArrowLeft } from "lucide-react";
+import { Clock, ThumbsUp, Utensils } from "lucide-react";
 import Tag from "@/components/ui/Tag";
 import IngredientsSection from "@/components/recipe-details/IngredientsSection";
 import RecipeStat from "@/components/recipe-details/RecipeStat";
+import NavigationButton from "@/components/ui/NavigationButton";
 
 type RecipeDetailsPageProps = {
   params: Promise<{
@@ -39,7 +40,9 @@ export default async function RecipeDetailsPage({
     <>
       <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mx-auto w-full max-w-3xl">
-          <div className="mb-6">
+          <div className="mb-6 flex items-center gap-3">
+            <NavigationButton />
+
             <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
               {recipe?.title}
             </h1>
