@@ -1,6 +1,6 @@
 import { getRecipeById } from "@/lib/mock-spoonacular";
 import Image from "next/image";
-import { Clock, ThumbsUp, Utensils } from "lucide-react";
+import { Clock, ThumbsUp, Utensils, ArrowLeft } from "lucide-react";
 import Tag from "@/components/ui/Tag";
 import IngredientsSection from "@/components/recipe-details/IngredientsSection";
 import RecipeStat from "@/components/recipe-details/RecipeStat";
