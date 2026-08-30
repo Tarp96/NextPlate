@@ -38,37 +38,39 @@ export default async function RecipeDetailsPage({
   return (
     <>
       <section className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
-            {recipe?.title}
-          </h1>
-        </div>
+        <div className="mx-auto w-full max-w-3xl">
+          <div className="mb-6">
+            <h1 className="text-3xl font-bold tracking-tight text-slate-900 sm:text-4xl lg:text-5xl">
+              {recipe?.title}
+            </h1>
+          </div>
 
-        <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl shadow-lg">
-          <Image
-            src={recipe?.image}
-            alt={recipe?.title}
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, 1152px"
-            className="object-cover"
-          />
-        </div>
+          <div className="relative aspect-[16/9] w-full overflow-hidden rounded-3xl shadow-lg">
+            <Image
+              src={recipe?.image}
+              alt={recipe?.title}
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="object-cover"
+            />
+          </div>
 
-        <div className="mt-5 flex flex-wrap gap-3">
-          <RecipeStat
-            icon={Clock}
-            label="Ready in"
-            value={`${recipe.readyInMinutes} min`}
-          />
+          <div className="mt-5 flex flex-wrap gap-3">
+            <RecipeStat
+              icon={Clock}
+              label="Ready in"
+              value={`${recipe.readyInMinutes} min`}
+            />
 
-          <RecipeStat
-            icon={Utensils}
-            label="Servings"
-            value={recipe.servings}
-          />
+            <RecipeStat
+              icon={Utensils}
+              label="Servings"
+              value={recipe.servings}
+            />
 
-          <RecipeStat icon={ThumbsUp} value={recipe.aggregateLikes} />
+            <RecipeStat icon={ThumbsUp} value={recipe.aggregateLikes} />
+          </div>
 
           <div className="mt-4 flex flex-wrap gap-2">
             {recipe.cuisines?.map((cuisine) => (
@@ -85,7 +87,7 @@ export default async function RecipeDetailsPage({
 
             {recipe.dairyFree && <Tag label="Dairy Free" variant="badge" />}
 
-            {recipe.dishTypes.length > 0 && (
+            {recipe.dishTypes?.length > 0 && (
               <Tag label={recipe.dishTypes[0]} variant="badge" />
             )}
           </div>
