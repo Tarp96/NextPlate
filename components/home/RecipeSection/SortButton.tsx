@@ -1,4 +1,4 @@
-import { SortOption, SelectedSortOption } from "@/lib/types";
+import {SelectedSortOption } from "@/lib/types";
 
 type SortButtonProps = {
   label: string;
