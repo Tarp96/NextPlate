@@ -3,7 +3,9 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import HeaderNavLink from "./ui/HeaderNavLink";
 
-export default function Header() {
+export default async function Header() {
+  const session = await getServerSession(authOptions);
+
   return (
     <header className="border-b border-zinc-200 bg-white">
       <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-4">
@@ -15,8 +17,13 @@ export default function Header() {
         </Link>
 
         <nav aria-label="Main navigation">
-          <HeaderNavLink label="Home" href="/" />
-          <HeaderNavLink label="Login" href="/login" />
+          <HeaderNavLink href="/" label="Home" />
+
+          {session?.user ? (
+            <HeaderNavLink href="/profile" label="Profile" />
+          ) : (
+            <HeaderNavLink href="/login" label="Login" />
+          )}
         </nav>
       </div>
     </header>
