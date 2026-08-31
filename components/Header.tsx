@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { getAuthSession } from "@/lib/auth";
 import HeaderNavLink from "./ui/HeaderNavLink";
 
 export default async function Header() {
-  const session = await getServerSession(authOptions);
+  const session = await getAuthSession();
 
   return (
     <header className="border-b border-zinc-200 bg-white">

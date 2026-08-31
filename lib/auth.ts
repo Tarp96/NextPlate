@@ -1,4 +1,5 @@
 import type { NextAuthOptions } from "next-auth";
+import { getServerSession } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 export const authOptions: NextAuthOptions = {
@@ -15,3 +16,7 @@ export const authOptions: NextAuthOptions = {
     signIn: "/login",
   },
 };
+
+export function getAuthSession() {
+  return getServerSession(authOptions);
+}
