@@ -5,6 +5,7 @@ import Tag from "@/components/ui/Tag";
 import IngredientsSection from "@/components/recipe-details/IngredientsSection";
 import RecipeStat from "@/components/recipe-details/RecipeStat";
 import BackLink from "@/components/ui/BackLink";
+import AddFavoriteButton from "@/components/recipe-details/AddFavoriteButton";
 
 type RecipeDetailsPageProps = {
   params: Promise<{
@@ -73,6 +74,13 @@ export default async function RecipeDetailsPage({
             />
 
             <RecipeStat icon={ThumbsUp} value={recipe.aggregateLikes} />
+            <AddFavoriteButton
+              recipe={{
+                id: recipe.id,
+                title: recipe.title,
+                image: recipe.image,
+              }}
+            />
           </div>
 
           <div className="mt-4 flex flex-wrap gap-2">
