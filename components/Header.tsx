@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAuthSession } from "@/lib/auth";
 import HeaderNavLink from "./ui/HeaderNavLink";
+import SignoutButton from "./auth/SignOutButton";
 
 export default async function Header() {
   const session = await getAuthSession();
@@ -19,7 +20,10 @@ export default async function Header() {
           <HeaderNavLink href="/" label="Home" />
 
           {session?.user ? (
-            <HeaderNavLink href="/profile" label="Profile" />
+            <>
+              <HeaderNavLink href="/profile" label="Profile" />
+              <SignoutButton />
+            </>
           ) : (
             <HeaderNavLink href="/login" label="Login" />
           )}
