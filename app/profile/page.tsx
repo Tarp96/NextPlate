@@ -1,5 +1,5 @@
 import { getAuthSession } from "@/lib/auth";
-import getFavorites from "@/lib/actions/favorites";
+import { getFavorites } from "@/lib/actions/favorites";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 

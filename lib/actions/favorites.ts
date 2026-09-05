@@ -1,12 +1,9 @@
 "use server";
 import { getAuthSession } from "../auth";
 import { createSupabase } from "../supabase/server";
+import type { Favorite, NewFavorite } from "../types";
 
-export async function addFavorites(recipe: {
-  id: number;
-  title: string;
-  image: string;
-}) {
+export async function addFavorites(recipe: NewFavorite) {
   const session = await getAuthSession();
 
   if (!session?.user.id) {
@@ -29,7 +26,10 @@ export async function addFavorites(recipe: {
   return { success: true };
 }
 
-export default async function getFavorites() {
+export async function getFavorites(): Promise<{
+  favorites: Favorite[];
+  error: string | null;
+}> {
   const session = await getAuthSession();
 
   if (!session?.user.id) {
@@ -48,5 +48,5 @@ export default async function getFavorites() {
     return { favorites: [], error: error.message };
   }
 
-  return { favorites: data ?? [], error: null };
+  return { favorites: (data as Favorite[]) ?? [], error: null };
 }
