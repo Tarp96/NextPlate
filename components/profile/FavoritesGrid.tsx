@@ -12,7 +12,7 @@ export default function FavoritesGrid({ recipeList }: FavoritesGridProps) {
         <li key={favorite.id}>
           {
             <FavoriteMealCard
-              recipe_id={favorite.id}
+              recipe_id={String(favorite.recipe_id)}
               image={favorite.image ?? ""}
               title={favorite.title ?? ""}
             />
