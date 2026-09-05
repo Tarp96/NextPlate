@@ -1,5 +1,6 @@
 import { getAuthSession } from "@/lib/auth";
 import { redirect } from "next/navigation";
+import getFavorites from "@/lib/actions/favorites";
 
 export default async function ProfilePage() {
   const session = await getAuthSession();
@@ -44,6 +45,10 @@ export default async function ProfilePage() {
             </p>
           </div>
         )}
+      </section>
+
+      <section>
+        <h2>Your favorite recipes:</h2>
       </section>
     </main>
   );
