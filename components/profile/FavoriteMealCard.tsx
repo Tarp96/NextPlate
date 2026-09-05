@@ -13,7 +13,7 @@ export default function FavoriteMealCard({
 }: FavoriteMealCardProps) {
   return (
     <Link
-      href={`/recipe/${recipe_id}`}
+      href={`/recipeDetails/${recipe_id}`}
       className="group block h-full overflow-hidden rounded-2xl border border-zinc-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:border-green-200 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-600 focus-visible:ring-offset-2"
     >
       <div className="aspect-[4/3] overflow-hidden bg-zinc-100">
