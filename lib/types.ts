@@ -101,10 +101,23 @@ export type SortOption =
   | "slowest"
   | "nameAscending"
   | "nameDescending"
-  | "highestRated"
+  | "highestRated";
 
-export type SelectedSortOption = SortOption | "default" 
+export type SelectedSortOption = SortOption | "default";
 
-export type RecipeComparator = (a: Recipe, b: Recipe) => number; 
+export type RecipeComparator = (a: Recipe, b: Recipe) => number;
 
+export type Favorite = {
+  id: string;
+  user_id: string;
+  recipe_id: number;
+  title: string | null;
+  image: string | null;
+  created_at: string;
+};
 
+export type NewFavorite = {
+  id: number;
+  title: string;
+  image: string;
+};
