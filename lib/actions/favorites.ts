@@ -54,3 +54,26 @@ export async function getFavorites(): Promise<{
 
   return { favorites: (data as Favorite[]) ?? [], error: null };
 }
+
+export async function checkIfExists(recipeId: number) {
+  const session = await getAuthSession();
+
+  if (!session?.user.id) {
+    return { exists: false, error: "You must be logged in" };
+  }
+
+  const supabase = createSupabase();
+
+  const { data, error } = await supabase
+    .from("favorites")
+    .select("id")
+    .eq("user_id", session.user.id)
+    .eq("recipe_id", recipeId)
+    .limit(1);
+
+  if (error) {
+    return { exists: false, error: error.message };
+  }
+
+  return { exists: (data?.length ?? 0) > 0, error: null };
+}
