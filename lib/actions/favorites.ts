@@ -2,6 +2,7 @@
 import { getAuthSession } from "../auth";
 import { createSupabase } from "../supabase/server";
 import type { Favorite, NewFavorite } from "../types";
+import { revalidatePath } from "next/cache";
 
 export async function addFavorites(recipe: NewFavorite) {
   const session = await getAuthSession();
@@ -25,7 +26,7 @@ export async function addFavorites(recipe: NewFavorite) {
     }
     return { error: error.message };
   }
-
+  revalidatePath("/profile");
   return { success: true };
 }
 
