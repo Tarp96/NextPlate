@@ -2,17 +2,14 @@
 
 import { addFavorites } from "@/lib/actions/favorites";
 import { useState } from "react";
+import { NewFavorite } from "@/lib/types";
 
 type Feedback = {
   type: "success" | "error";
   message: string;
 };
 
-export default function AddFavoriteButton({
-  recipe,
-}: {
-  recipe: { id: number; title: string; image: string };
-}) {
+export default function AddFavoriteButton({ recipe }: { recipe: NewFavorite }) {
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [pending, setPending] = useState(false);
 
