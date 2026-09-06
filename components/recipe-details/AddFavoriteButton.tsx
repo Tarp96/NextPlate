@@ -1,23 +1,37 @@
 "use client";
 
 import { addFavorites } from "@/lib/actions/favorites";
+import { useState } from "react";
 
 export default function AddFavoriteButton({
   recipe,
 }: {
   recipe: { id: number; title: string; image: string };
 }) {
+  const [message, setMessage] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+
+  async function handleClick() {
+    setPending(true);
+    setMessage(null);
+
+    const result = await addFavorites(recipe);
+
+    if (result?.error) {
+      setMessage(result.error);
+    } else {
+      setMessage("Saved to favorites");
+    }
+
+    setPending(false);
+  }
+
   return (
-    <button
-      type="button"
-      onClick={() =>
-        addFavorites({
-          id: recipe.id,
-          title: recipe.title,
-          image: recipe.image,
-        })
-      }
-      className="
+    <div>
+      <button
+        onClick={handleClick}
+        disabled={pending}
+        className="
   inline-flex min-h-11 items-center justify-center gap-2
   rounded-2xl bg-green-700 px-5 py-3
   text-sm font-semibold text-white shadow-sm
@@ -25,21 +39,10 @@ export default function AddFavoriteButton({
   focus-visible:outline-none focus-visible:ring-2
   focus-visible:ring-green-600 focus-visible:ring-offset-2
 "
-    >
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth={1.8}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        className="h-5 w-5"
-        aria-hidden="true"
       >
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z" />
-      </svg>
-      Add to Favorites
-    </button>
+        {pending ? "Saving..." : "Add to Favorites"}
+      </button>
+      {message && <p>{message}</p>}
+    </div>
   );
 }

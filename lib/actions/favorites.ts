@@ -20,6 +20,9 @@ export async function addFavorites(recipe: NewFavorite) {
   });
 
   if (error) {
+    if (error.code === "23505") {
+      return { error: "This recipe is already in your favorites" };
+    }
     return { error: error.message };
   }
 
