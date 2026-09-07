@@ -6,6 +6,7 @@ import IngredientsSection from "@/components/recipe-details/IngredientsSection";
 import RecipeStat from "@/components/recipe-details/RecipeStat";
 import BackLink from "@/components/ui/BackLink";
 import AddFavoriteButton from "@/components/recipe-details/AddFavoriteButton";
+import { checkIfExists } from "@/lib/actions/favorites";
 
 type RecipeDetailsPageProps = {
   params: Promise<{
@@ -24,6 +25,8 @@ export default async function RecipeDetailsPage({
   if (!recipe) {
     return null;
   }
+
+  const exists = await checkIfExists(recipe.id);
 
   const displayAnalyzedInstructions = recipe.analyzedInstructions[0].steps.map(
     (step) => (
@@ -74,13 +77,18 @@ export default async function RecipeDetailsPage({
             />
 
             <RecipeStat icon={ThumbsUp} value={recipe.aggregateLikes} />
-            <AddFavoriteButton
-              recipe={{
-                id: recipe.id,
-                title: recipe.title,
-                image: recipe.image,
-              }}
-            />
+
+            {!exists ? (
+              <AddFavoriteButton
+                recipe={{
+                  id: recipe.id,
+                  title: recipe.title,
+                  image: recipe.image,
+                }}
+              />
+            ) : (
+              <button>Remove from Favorites</button>
+            )}
           </div>
 
           <div className="mt-4 flex flex-wrap gap-2">
