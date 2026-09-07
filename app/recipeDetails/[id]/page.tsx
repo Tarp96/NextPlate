@@ -5,7 +5,7 @@ import Tag from "@/components/ui/Tag";
 import IngredientsSection from "@/components/recipe-details/IngredientsSection";
 import RecipeStat from "@/components/recipe-details/RecipeStat";
 import BackLink from "@/components/ui/BackLink";
-import AddFavoriteButton from "@/components/recipe-details/AddFavoriteButton";
+import AddFavoriteButton from "@/components/favorites/AddFavoriteButton";
 import { checkIfExists } from "@/lib/actions/favorites";
 
 type RecipeDetailsPageProps = {
