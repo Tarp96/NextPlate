@@ -27,6 +27,7 @@ export async function addFavorites(recipe: NewFavorite) {
     return { error: error.message };
   }
   revalidatePath("/profile");
+  revalidatePath(`/recipeDetails/${recipe.id}`);
   return { success: true };
 }
 
@@ -42,12 +43,16 @@ export async function deleteFavorite(recipeId: number) {
   const { error } = await supabase
     .from("favorites")
     .delete()
-    .eq("recipe_id", recipeId);
+    .eq("recipe_id", recipeId)
+    .eq("user_id", session.user.id);
+
   if (error) {
     return { error: error.message };
   }
 
   revalidatePath("/profile");
+  revalidatePath(`/recipeDetails/${recipeId}`);
+
   return { success: true };
 }
 

@@ -25,7 +25,7 @@ export default async function RecipeDetailsPage({
     return null;
   }
 
-  const exists = await checkIfExists(recipe.id);
+  const { exists } = await checkIfExists(recipe.id);
 
   const displayAnalyzedInstructions = recipe.analyzedInstructions[0].steps.map(
     (step) => (
