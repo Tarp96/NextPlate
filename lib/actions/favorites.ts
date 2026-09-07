@@ -30,6 +30,27 @@ export async function addFavorites(recipe: NewFavorite) {
   return { success: true };
 }
 
+export async function deleteFavorite(recipeId: number) {
+  const session = await getAuthSession();
+
+  if (!session?.user.id) {
+    return { error: "You must be logged in" };
+  }
+
+  const supabase = createSupabase();
+
+  const { error } = await supabase
+    .from("favorites")
+    .delete()
+    .eq("recipe_id", recipeId);
+  if (error) {
+    return { error: error.message };
+  }
+
+  revalidatePath("/profile");
+  return { success: true };
+}
+
 export async function getFavorites(): Promise<{
   favorites: Favorite[];
   error: string | null;
