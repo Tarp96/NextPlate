@@ -6,6 +6,7 @@ import IngredientsSection from "@/components/recipe-details/IngredientsSection";
 import RecipeStat from "@/components/recipe-details/RecipeStat";
 import BackLink from "@/components/ui/BackLink";
 import AddFavoriteButton from "@/components/favorites/AddFavoriteButton";
+import DeleteFavoriteButton from "@/components/favorites/DeleteFavoriteButton";
 import { checkIfExists } from "@/lib/actions/favorites";
 
 type RecipeDetailsPageProps = {
@@ -19,8 +20,6 @@ export default async function RecipeDetailsPage({
 }: RecipeDetailsPageProps) {
   const { id } = await params;
   const recipe = await getRecipeById(+id);
-
-  console.log(id);
 
   if (!recipe) {
     return null;
@@ -87,7 +86,7 @@ export default async function RecipeDetailsPage({
                 }}
               />
             ) : (
-              <button>Remove from Favorites</button>
+              <DeleteFavoriteButton recipeId={recipe.id} />
             )}
           </div>
 

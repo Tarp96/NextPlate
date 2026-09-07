@@ -4,7 +4,13 @@ import { useState } from "react";
 import type { Feedback } from "@/lib/types";
 import { deleteFavorite } from "@/lib/actions/favorites";
 
-export default function DeleteFavoriteButton(recipeId: number) {
+type DeleteFavoriteButtonProps = {
+  recipeId: number;
+};
+
+export default function DeleteFavoriteButton({
+  recipeId,
+}: DeleteFavoriteButtonProps) {
   const [feedback, setFeedback] = useState<Feedback | null>(null);
   const [pending, setPending] = useState(false);
 
