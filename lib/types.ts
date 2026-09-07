@@ -121,3 +121,8 @@ export type NewFavorite = {
   title: string;
   image: string;
 };
+
+export type Feedback = {
+  type: "success" | "error";
+  message: string;
+};
